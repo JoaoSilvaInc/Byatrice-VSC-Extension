@@ -1,71 +1,53 @@
-# byatrice-extension README
+BYTC Extension
+BYTC Extension is a Visual Studio Code extension that helps you read and visualize .bytc binary files. It maps specific byte values to their corresponding functions and displays the interpreted content in a human-readable format.
 
-This is the README for your extension "byatrice-extension". After writing up a brief description, we recommend including the following sections.
+Features
+Opens and interprets .bytc binary files.
+Maps specific byte values to predefined functions.
+Displays the interpreted content in a readable format.
+Installation
+Install the extension from the VS Code Marketplace:
 
-## Features
+You can find and install the extension directly from the VS Code Marketplace. Search for "BYTC Extension".
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+Manual Installation:
 
-For example if there is an image subfolder under your extension project workspace:
+If you have the .vsix file, you can install it manually:
 
-\!\[feature X\]\(images/feature-x.png\)
+Open VS Code.
+Go to the Extensions view by clicking on the Extensions icon in the Activity Bar on the side of the window or by pressing Ctrl+Shift+X.
+Click on the ellipsis (...) at the top right of the Extensions view.
+Select Install from VSIX....
+Choose the .vsix file.
+Usage
+Open a .bytc File:
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+Open the Command Palette (Ctrl+Shift+P).
+Run the command BYTC: Open BYTC File.
+Select a .bytc file to open.
+View the Interpreted Content:
 
-## Requirements
+The file will be opened and interpreted according to the predefined mappings.
+The interpreted content will be displayed in a human-readable format.
+Extension Settings
+This extension does not have any custom settings yet. Future versions may include additional configuration options.
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+Known Issues
+No known issues at the moment. Please report any bugs or feature requests on the GitHub issues page.
+Release Notes
+1.0.0
+Initial release of BYTC Extension.
+Added functionality to open and interpret .bytc files.
+Display interpreted content in a readable format.
+Contributing
+Contributions are welcome! Please fork the repository and submit pull requests.
 
-## Extension Settings
+Fork the repository.
+Create a new branch (git checkout -b feature-branch).
+Make your changes.
+Commit your changes (git commit -am 'Add some feature').
+Push to the branch (git push origin feature-branch).
+Create a new Pull Request.
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+Contact
+For more information or any questions, feel free to contact Joao Silva at joaothiagojtinc@gmail.com.
