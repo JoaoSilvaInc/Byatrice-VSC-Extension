@@ -1,5 +1,9 @@
 {
   "publisher": "JoaoSilva",
+  "repository":  {
+    "type": "git",
+    "url": "https://github.com/JoaoSilvaInc/Byatrice-VSC-Extension.git"
+  },
   "name": "byatrice-extension",
   "displayName": "BYTC File Viewer",
   "description": "View .bytc files with readable function names",
