@@ -1,4 +1,5 @@
 {
+  "publisher": "JoaoSilva",
   "name": "byatrice-extension",
   "displayName": "BYTC File Viewer",
   "description": "View .bytc files with readable function names",
