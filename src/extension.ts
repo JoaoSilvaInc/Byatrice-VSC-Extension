@@ -3,15 +3,17 @@ import * as vscode from 'vscode';
 import * as fs from 'fs';
 
 const byteFunctionMap: { [key: number]: string } = {
-    0b1000: 'startMetadata',
-    0b111: 'endMetadata',
-    0b110: 'startRow',
-    0b101: 'endRow',
-    0b100: 'startRowId',
-    0b11: 'endRowId',
-    0b10: 'startData',
-    0b1: 'endData',
-    0b0: 'dataSeparator'
+    0b1010: ' exclusiveMarkup',
+    0b1001: '  . ', //floatSeparator
+    0b1000: '\n0metadata: \n ',
+    0b111: '\n0;\n ', //endMetadata
+    0b110: '\n0row: \n ',
+    0b101: '\n0;\n ', // endRow
+    0b100: '\n1id:\n ',
+    0b11: '\n1;\n ', // endRowId
+    0b10: '\n1data: \n ',
+    0b1: '\n1;\n ', //endData
+    0b0: ' | ' // dataSeparator
 };
 
 export function activate(context: vscode.ExtensionContext) {
@@ -30,96 +32,61 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 function interpretBytcFile(buffer: Buffer): string {
+    let ignoreNext: boolean = false;
+    let result: string = '';
 
-    let result = '';
-
-    let control: number = 0;
-    let state: number = 0; // Reading exclusive bytes
-    
-    let currentDataBytes: string[] = [];
-    let bytesCounter: number = 0;
-    let bytesCount: number = 0;
-
-    let parseJson: boolean = false;
-
-    buffer.forEach(byte => {
-
-        let byteString = `${byte.toString(2).padStart(8, '0')} `;
-
-        if (control === 1 && state === 0 && byte === 0b1000) {
-            state = 1; // Reading metadata
-            parseJson = true;
-        }
-
-        if (state === 1) { // Reading data
-            
-            if (bytesCounter === 0) {
-                bytesCount = byte;
-                result += `${byte} bytes data: `;
-            }
-
-            if (bytesCounter < bytesCount) {
-                currentDataBytes.push(byteString);
-            } else {
-                enterCurrentDataBytes(); // Reset state to 0 and pushes currentDataBytes content to result
-            }
-
+    buffer.forEach((byte) => {
+        if (ignoreNext) {
+            result += toX(byte);
+            ignoreNext = false;
             return;
-
         }
 
-
-        if (
-            byte === 0b110 || // startRow
-            byte === 0b11 || // startRowId
-            byte === 0b10 // startData
-        ) { // Opening functions
-            if (state === 0) {
-                control ++;
-                result += `${byteFunctionMap[byte]}:\n`;
-            }
-
-            if (control === 2 && state === 0) {
-                state = 1; // Reading data
-            }
+        if (byte === 0b1010) {
+            ignoreNext = true;
+            return;
         }
 
-        if (
-            byte === 0b101 || // endRow
-            byte === 0b100 || // endRowId
-            byte === 0b1 || // endData
-            byte === 0b111 // endMetadata
-        ) { // CLosing functions
-            if (state === 0) {
-                control --;
-                result += `${byteFunctionMap[byte]}:\n`;
+        const mappedFunction = byteFunctionMap[byte];
+        let exclusive = mappedFunction ? mappedFunction : undefined;
+
+        if (exclusive) {
+            let counter: number = 0;
+            for (let i = 0; i < exclusive.length; i++) {
+                if (exclusive[i] === '-') {
+                    counter++;
+                }
             }
         }
 
+        result += exclusive ? `${exclusive}` : `${toX(byte)} `;
     });
 
-    return result;
-
-    function enterCurrentDataBytes(): void {
-
-        if (parseJson) {
-            result += Buffer.from(currentDataBytes.map( byteStr => parseInt(byteStr) )).toJSON();
-        } else {
-            currentDataBytes.forEach( (byteStr, index) => {
-                if (index < currentDataBytes.length-1) {
-                    result += `${byteStr} `;
-                } else {
-                    result += `${byteStr}/n`;
-                }
-            });
-        }
-
-        currentDataBytes = [];
-        bytesCounter = 0;
-        bytesCount = 0;
-        state = 0; // Finish data reading
+    function toX(byte: number): string {
+        return ('0' + byte.toString(16)).slice(-2);
     }
 
+    
+    let indent: number = 0;
+
+    return result.split('\n').reduce((r, line) => {
+        if (!line) {
+            return r;
+        }
+
+        const newIndent = parseInt(line.slice(0, 1), 10);
+
+        if (isNaN(newIndent)) {
+            r += '  '.repeat(indent+1);
+            r += line.slice(1);
+        } else {
+            r += '  '.repeat(newIndent);
+            r += line.slice(1);
+            indent = newIndent;
+        }
+
+        return r + '\n';
+    }, '');
 }
 
 export function deactivate() {}

@@ -25,7 +25,27 @@
         "extensions": [".bytc"],
         "configuration": "./language-configuration.json"
       }
-    ]
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "bytcExplorer",
+          "title": "BYTC",
+          "icon": "media/icon.png"
+        }
+      ]
+    },
+    "views": {
+      "bytcExplorer": [
+        {
+          "id": "bytcView",
+          "name": "BYTC View"
+        }
+      ]
+    },
+    "fileExplorer": {
+      "command": "byatrice-extension.openBytcFile"
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
