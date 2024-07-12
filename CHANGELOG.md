@@ -8,3 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### Added
 - First version of the BYTC FIle Viewer Extension.
 - Function to open and interpret .bytc files.
+
+## [1.0.1] - 2024-07-11
+### Added
+- Added Byatrice icon to `package.json`
