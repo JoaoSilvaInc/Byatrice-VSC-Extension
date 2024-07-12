@@ -1,5 +1,5 @@
-BYTC Extension
-BYTC Extension is a Visual Studio Code extension that helps you read and visualize .bytc binary files. It maps specific byte values to their corresponding functions and displays the interpreted content in a human-readable format.
+BYTC File Viewer Extension
+BYTC File Viewer Extension is a Visual Studio Code extension that helps you read and visualize .bytc binary files. It maps specific byte values to their corresponding functions and displays the interpreted content in a human-readable format.
 
 Features
 Opens and interprets .bytc binary files.
@@ -8,7 +8,7 @@ Displays the interpreted content in a readable format.
 Installation
 Install the extension from the VS Code Marketplace:
 
-You can find and install the extension directly from the VS Code Marketplace. Search for "BYTC Extension".
+You can find and install the extension directly from the VS Code Marketplace. Search for "BYTC File Viewer Extension".
 
 Manual Installation:
 
@@ -36,7 +36,7 @@ Known Issues
 No known issues at the moment. Please report any bugs or feature requests on the GitHub issues page.
 Release Notes
 1.0.0
-Initial release of BYTC Extension.
+Initial release of BYTC File Viewer Extension.
 Added functionality to open and interpret .bytc files.
 Display interpreted content in a readable format.
 Contributing
@@ -48,6 +48,8 @@ Make your changes.
 Commit your changes (git commit -am 'Add some feature').
 Push to the branch (git push origin feature-branch).
 Create a new Pull Request.
+License
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 Contact
-For more information or any questions, feel free to contact Joao Silva at joaothiagojtinc@gmail.com.
+For more information or any questions, feel free to contact Joao T. R. Silva at joaothiagojtinc@gmail.com.
