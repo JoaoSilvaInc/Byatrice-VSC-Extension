@@ -1,5 +1,6 @@
 {
   "publisher": "JoaoSilva",
+  "icon": "media/icon.png",
   "repository":  {
     "type": "git",
     "url": "https://github.com/JoaoSilvaInc/Byatrice-VSC-Extension.git"
