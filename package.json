@@ -66,6 +66,10 @@
     "test": "vscode-test"
   },
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JoaoSilvaInc/Byatrice-VSC-Extension/issues"
+  },
+  "homepage": "https://github.com/JoaoSilvaInc/Byatrice-VSC-Extension#readme",
   "devDependencies": {
     "@types/vscode": "^1.91.0",
     "@types/mocha": "^10.0.7",
